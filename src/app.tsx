@@ -1,8 +1,10 @@
-import {MapPin, Calendar, ArrowRight, UserRoundPlus, Settings2} from 'lucide-react'
+import {MapPin, Calendar, ArrowRight, UserRoundPlus, Settings2, X} from 'lucide-react'
 import { useState } from 'react'
 
 export function App() {
   const [isGuestsInputOpen, setIsGuestsInputOpen] = useState(false)
+  const [isGuestsModalOpen, setIsGuestsModalOpen] = useState(false)
+
 
   function openGuestsInput() {
     setIsGuestsInputOpen(true)
@@ -10,6 +12,14 @@ export function App() {
 
   function closeGuestsInput() {
     setIsGuestsInputOpen(false)
+  }
+
+  function openGuestsModal() {
+    setIsGuestsModalOpen(true)
+  }
+
+  function closeGuestsModal() {
+    setIsGuestsModalOpen(false)
   }
 
   return (
@@ -51,10 +61,11 @@ export function App() {
 
           {isGuestsInputOpen && (
             <div className="h-16 bg-zinc-900 px-4 rounded-xl flex items-center shadow-shape gap-3">
-              <div className="flex items-center gap-2 flex-1">
+              <button type="button" onClick={openGuestsModal} className="flex items-center gap-2 flex-1">
                 <UserRoundPlus className="size-5 text-zinc-400" />
-                <input  type="text" placeholder="Quem estará na viagem?" className="bg-transparent text-lg placeholder-zinc-400 outline-none flex-1 "/>
-              </div>
+                <span className="text-zinc-400 text-lg flex-1 text-left">Quem estará na viagem?</span>
+                <input  type="text" placeholder="" className="bg-transparent text-lg placeholder-zinc-400 outline-none flex-1 "/>
+              </button>
 
               <div className="w-px h-6 bg-zinc-800">
 
@@ -73,8 +84,22 @@ export function App() {
           concorda <br /> com nossos <a className="text-zinc-300" href="#">termos de uso</a> e <a className="text-zinc-300" href="#">politícas de privacidade</a>.
         </p>
       </div>
+
+      {isGuestsModalOpen && (
+        <div className="fixed inset-0 bg-black/60 flex items-center justify-center">
+          <div className="w-[640px] rounded-xl py-5 px-6 shadow-shape bg-zinc-900">
+            <div className="flex items-center justify-between">
+              <h2>Selecionar convidados</h2>
+              <button type="button" onClick={closeGuestsModal}>
+                <X className="size-5 text-zinc-400" />
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+
     </div>
   )
 }
 
-export default App
