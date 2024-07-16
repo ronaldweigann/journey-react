@@ -51,5 +51,3 @@ export function TripDetailsPage() {
         </div>
     )
 }
-
-// MINUTO 44
