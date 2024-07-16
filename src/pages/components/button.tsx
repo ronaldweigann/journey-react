@@ -1,4 +1,3 @@
-import { Settings2 } from "lucide-react";
 import { ReactNode } from "react";
 
 interface ButtonProps {
